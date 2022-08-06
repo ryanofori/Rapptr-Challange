@@ -25,17 +25,29 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     private var client: ChatClient?
     private var messages: [Message]?
     
+    var chatTableView = UITableView()
+    
     // MARK: - Outlets
-    @IBOutlet weak var chatTable: UITableView!
+//    @IBOutlet weak var chatTable: UITableView!
+    
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
 //        view.backgroundColor = UIColor(hex: "#F9F9F9")
+        view.backgroundColor = UIColor(hex: "#F9F9F9")
         
         messages = [Message]()
-        configureTable(tableView: chatTable)
+//        configureTable(tableView: chatTable)
         title = "Chat"
+        
+        
+        chatTableView.delegate = self
+        chatTableView.dataSource = self
+        chatTableView.frame = view.bounds
+        
+        
+        
         
         // TODO: Remove test data when we have actual data from the server loaded
         messages?.append(Message(testName: "James", withTestMessage: "Hey Guys!"))
@@ -47,8 +59,7 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
         messages?.append(Message(testName:"James", withTestMessage:"1 hr at the Local Burger sound good?"))
         messages?.append(Message(testName:"Paul", withTestMessage:"Sure thing"))
         messages?.append(Message(testName:"Amy", withTestMessage:"See you there :P"))
-        
-        chatTable.reloadData()
+//        chatTable.reloadData()
     }
     
     // MARK: - Private
@@ -61,17 +72,23 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     // MARK: - UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: ChatTableViewCell? = nil
-        if cell == nil {
-            let nibs = Bundle.main.loadNibNamed("ChatTableViewCell", owner: self, options: nil)
-            cell = nibs?[0] as? ChatTableViewCell
-        }
-        cell?.setCellData(message: messages![indexPath.row])
-        return cell!
+//        var cell: ChatTableViewCell? = nil
+//        guard let cell = cell else {
+//            return UITableViewCell()
+//        }
+
+//        if cell == nil {
+//            let nibs = Bundle.main.loadNibNamed("ChatTableViewCell", owner: self, options: nil)
+//            cell = nibs?[0] as? ChatTableViewCell
+//        }
+//        cell?.setCellData(message: messages![indexPath.row])
+//        cell.
+//        return cell!
+        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages!.count
+        return messages?.count ?? 0
     }
     
     // MARK: - UITableViewDelegate
@@ -80,8 +97,8 @@ class ChatViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     // MARK: - IBAction
-    @IBAction func backAction(_ sender: Any) {
-        let mainMenuViewController = MenuViewController()
-        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
-    }
+//    @IBAction func backAction(_ sender: Any) {
+//        let mainMenuViewController = MenuViewController()
+//        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
+//    }
 }

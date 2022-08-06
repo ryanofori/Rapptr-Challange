@@ -32,18 +32,83 @@ class LoginViewController: UIViewController {
     
     let alert = Alert()
     
-    @IBOutlet weak var loginButton: UIButton!
+    var backgroundImage: UIImageView = {
+        let backgroundImage = UIImageView(frame: .zero)
+        backgroundImage.image = UIImage(named: "img_login.png")
+        backgroundImage.contentMode = .scaleToFill
+        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        return backgroundImage
+    }()
+    
+    var emailField: UITextField = {
+        let emailField = UITextField()
+        emailField.layer.cornerRadius = 5
+        emailField.backgroundColor = .white.withAlphaComponent(0.5)
+        emailField.placeholder = "Email"
+        emailField.translatesAutoresizingMaskIntoConstraints = false
+        emailField.layer.cornerRadius = 8
+        emailField.leftViewMode = .always
+        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: emailField.frame.height))
+        return emailField
+    }()
+    
+    var passwordField: UITextField = {
+        let passwordField = UITextField()
+        passwordField.layer.cornerRadius = 5
+        passwordField.backgroundColor = .white.withAlphaComponent(0.4)
+        passwordField.placeholder = "Password"
+        passwordField.layer.cornerRadius = 8
+        passwordField.translatesAutoresizingMaskIntoConstraints = false
+        passwordField.leftViewMode = .always
+        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: passwordField.frame.height))
+        return passwordField
+    }()
+    
+    var loginButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.tintColor = .white
+        button.backgroundColor = UIColor(hex: "#0E5C89")
+        button.setTitle("LOGIN", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        return button
+    }()
+    
+//    @IBOutlet weak var loginButton: UIButton!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         title = "Login"
-        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "img_login.png")
+        
 //        view.backgroundColor = UIColor(patternImage: UIImage(named: "img_login.png") ?? UIImage())
-        backgroundImage.contentMode = .scaleAspectFill
-        view.insertSubview(backgroundImage, at: 0)
-        loginButton.backgroundColor = UIColor(hex: "#0E5C89")
-        loginButton.tintColor = .white
+//        view.insertSubview(backgroundImage, at: 0)
+        [backgroundImage, emailField, passwordField, loginButton].forEach { view.addSubview($0) }
+        
+        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        
+        
+        
+        emailField.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  64).isActive = true
+        emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        
+        
+        passwordField.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,constant: 24).isActive = true
+        passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        
+        
+        loginButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 24).isActive = true
+        loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
+        loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
     }
     
     override func didReceiveMemoryWarning() {
@@ -60,28 +125,6 @@ class LoginViewController: UIViewController {
     @IBAction func didPressLoginButton(_ sender: Any) {
 //        NetworkManager.shared.getData(urlString: "", completion: <#T##(Data) -> Void#>)
         alert.showAlert(mesageTitle: "I did somethin", messageDesc: "I am here!", viewController: self)
-    }
-    
-    func hexStringToUIColor (hex:String) -> UIColor {
-        var cString:String = hex.trimmingCharacters(in: .whitespacesAndNewlines).uppercased()
-
-        if (cString.hasPrefix("#")) {
-            cString.remove(at: cString.startIndex)
-        }
-
-        if ((cString.count) != 6) {
-            return UIColor.gray
-        }
-
-        var rgbValue:UInt64 = 0
-        Scanner(string: cString).scanHexInt64(&rgbValue)
-
-        return UIColor(
-            red: CGFloat((rgbValue & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((rgbValue & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(rgbValue & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
     }
     
 }

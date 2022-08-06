@@ -18,8 +18,11 @@ class ChatTableViewCell: UITableViewCell {
      **/
     
     // MARK: - Outlets
-    @IBOutlet weak var header: UILabel!
-    @IBOutlet weak var body: UILabel!
+//    @IBOutlet weak var header: UILabel!
+//    @IBOutlet weak var body: UILabel!
+    var profileImage: UIImageView?
+    var headerName: UILabel?
+    var messsageBody: UILabel?
     
     // MARK: - Lifecycle
     override func awakeFromNib() {
@@ -27,8 +30,8 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     // MARK: - Public
-    func setCellData(message: Message) {
-        header.text = message.username
-        body.text = message.text
-    }
+//    func setCellData(message: Message) {
+//        header.text = message.username
+//        body.text = message.text
+//    }
 }

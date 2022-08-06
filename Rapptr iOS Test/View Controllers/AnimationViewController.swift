@@ -23,15 +23,49 @@ class AnimationViewController: UIViewController {
      *
      */
     
-    @IBOutlet weak var logoImage: UIImageView!
-    @IBOutlet weak var FadeButton: UIButton!
+//    @IBOutlet weak var logoImage: UIImageView!
+//    @IBOutlet weak var FadeButton: UIButton!
+    
+    var fadeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.backgroundColor = .white
+        button.tintColor = UIColor(hex: "#FFFFFF")
+        button.backgroundColor = UIColor(hex: "#0E5C89")
+        button.setTitle("FADE IN", for: .normal)
+        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.frame =  CGRect(x: 100, y: 100, width: 200, height: 50)
+//        button.addTarget(self, action: #selector(didPressChatButton), for: .touchUpInside)
+        return button
+    }()
+    
+    var logoImage: UIImageView = {
+        let logoImage = UIImageView(frame: .zero)
+        logoImage.image = UIImage(named: "ic_logo.png")
+        logoImage.contentMode = .scaleAspectFill
+        logoImage.translatesAutoresizingMaskIntoConstraints = false
+        return logoImage
+    }()
+    
     var logoVisable = true
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = UIColor(hex: "#F9F9F9")
+//        view.backgroundColor =
         title = "Animation"
-        logoImage.image = UIImage(named: "ic_logo.png")
-        FadeButton.tintColor = .white
+        [fadeButton, logoImage].forEach { view.addSubview($0) }
+        logoImage.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor,constant: 100).isActive = true
+        logoImage.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        logoImage.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        logoImage.heightAnchor.constraint(equalToConstant: 70).isActive = true
+        
+        fadeButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -24).isActive = true
+        fadeButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
+        fadeButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        fadeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+//        fadeButton.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+//        logoImage.image = UIImage(named: "ic_logo.png")
+//        FadeButton.tintColor = .white
 //        logoImage.alpha = 0
 //        FadeButton.backgroundColor = "#0E5C89"
         
@@ -52,13 +86,13 @@ class AnimationViewController: UIViewController {
             UIView.animate(withDuration: 1.5) {
                 self.logoImage.alpha = 0
             }
-            FadeButton.setTitle("Fade Out", for: .normal)
+//            logoImage.setTitle("Fade Out", for: .normal)
             logoVisable = false
         } else {
             UIView.animate(withDuration: 1.5) {
                 self.logoImage.alpha = 1
             }
-            FadeButton.setTitle("Fade In", for: .normal)
+//            logoImage.setTitle("Fade In", for: .normal)
             logoVisable = true
         }
         
