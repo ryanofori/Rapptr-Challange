@@ -25,11 +25,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        navigationController.navigationBar.isTranslucent = false
         navigationController.navigationBar.backgroundColor = UIColor(hex: "#0E5C89")
         navigationController.navigationBar.tintColor = .white
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//        navigationItem
-//        navigationController.navigationItem.backBarButtonItem?.title = ""
-        let backBarButtonItem = UIBarButtonItem(title: "You back button title here", style: .plain, target: nil, action: nil)
-        navigationController.navigationItem.backBarButtonItem = backBarButtonItem
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
         
         window?.rootViewController = navigationController
     }

@@ -43,8 +43,13 @@ class LoginViewController: UIViewController {
     var emailField: UITextField = {
         let emailField = UITextField()
         emailField.layer.cornerRadius = 5
-        emailField.backgroundColor = .white.withAlphaComponent(0.5)
-        emailField.placeholder = "Email"
+        emailField.backgroundColor = .white.withAlphaComponent(0.5) //?
+        //        emailField.placeholder = "Email"
+        emailField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor : UIColor(hex: "#5F6063")])
+        emailField.textColor = UIColor(hex: "#1B1E1F")
+        emailField.font = emailField.font?.withSize(16)
         emailField.translatesAutoresizingMaskIntoConstraints = false
         emailField.layer.cornerRadius = 8
         emailField.leftViewMode = .always
@@ -56,7 +61,12 @@ class LoginViewController: UIViewController {
         let passwordField = UITextField()
         passwordField.layer.cornerRadius = 5
         passwordField.backgroundColor = .white.withAlphaComponent(0.4)
-        passwordField.placeholder = "Password"
+//        passwordField.placeholder = "Password"
+        passwordField.attributedPlaceholder = NSAttributedString(
+            string: "Email",
+            attributes: [NSAttributedString.Key.foregroundColor : UIColor(hex: "#5F6063")])
+        passwordField.textColor = UIColor(hex: "#1B1E1F")
+        passwordField.font = passwordField.font?.withSize(16)
         passwordField.layer.cornerRadius = 8
         passwordField.translatesAutoresizingMaskIntoConstraints = false
         passwordField.leftViewMode = .always
@@ -66,24 +76,24 @@ class LoginViewController: UIViewController {
     
     var loginButton: UIButton = {
         let button = UIButton(type: .system)
-        button.backgroundColor = .white
-        button.tintColor = .white
-        button.backgroundColor = UIColor(hex: "#0E5C89")
+        button.tintColor = Style.Colors.ButtonTextColor
+        button.backgroundColor = Style.Colors.buttonBackground //UIColor(hex: "#0E5C89")
         button.setTitle("LOGIN", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
+        button.addTarget(self, action: #selector(showStuff), for: .touchUpInside)
         return button
     }()
     
-//    @IBOutlet weak var loginButton: UIButton!
+    //    @IBOutlet weak var loginButton: UIButton!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Login"
         
-//        view.backgroundColor = UIColor(patternImage: UIImage(named: "img_login.png") ?? UIImage())
-//        view.insertSubview(backgroundImage, at: 0)
+        //        view.backgroundColor = UIColor(patternImage: UIImage(named: "img_login.png") ?? UIImage())
+        //        view.insertSubview(backgroundImage, at: 0)
         [backgroundImage, emailField, passwordField, loginButton].forEach { view.addSubview($0) }
         
         backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
@@ -118,13 +128,26 @@ class LoginViewController: UIViewController {
     
     // MARK: - Actions
     @IBAction func backAction(_ sender: Any) {
+        naviagateToPrevious()
+    }
+    
+    func naviagateToPrevious() {
         let mainMenuViewController = MenuViewController()
         self.navigationController?.pushViewController(mainMenuViewController, animated: true)
     }
     
     @IBAction func didPressLoginButton(_ sender: Any) {
-//        NetworkManager.shared.getData(urlString: "", completion: <#T##(Data) -> Void#>)
+        //        NetworkManager.shared.getData(urlString: "", completion: <#T##(Data) -> Void#>)
         alert.showAlert(mesageTitle: "I did somethin", messageDesc: "I am here!", viewController: self)
+    }
+    @objc func showStuff() {
+        DispatchQueue.main.async {
+            let alertController = UIAlertController(title: "mesageTitle", message: "messageDesc", preferredStyle: .actionSheet)
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alertController, animated: true) {
+                print("I was pressed")
+            }
+        }
     }
     
 }
@@ -133,10 +156,9 @@ class Alert {
     func showAlert(mesageTitle: String, messageDesc: String, viewController: UIViewController) {
         DispatchQueue.main.async {
             let alertController = UIAlertController(title: mesageTitle, message: messageDesc, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "Dismiss", style: .default))
+            alertController.addAction(UIAlertAction(title: "OK", style: .default))
             viewController.present(alertController, animated: true, completion: nil)
         }
-            
     }
 }
 class NetworkManager {
@@ -144,41 +166,37 @@ class NetworkManager {
     
     private init() {}
     
-    func getData(urlString: String, completion: @escaping(Data) -> Void) {
-        guard let url = URL(string: urlString) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) {data, response, error in
-            guard let data = data else { return }
-            completion(data)
-        }
-        task.resume()
-    }
-    
-    func postData(urlString: String, param: String, completion: @escaping([String: Any]) -> Void) {
-        let param: String = param
-        let data = param.data(using: .utf8)
-        guard let url = URL(string: urlString) else { return }
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.setValue("application/x-www-form-urlencoded; charset=utf-8", forHTTPHeaderField: "Content-Type")
-        request.httpBody = data
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error  in
-            if let response = response {
-                NSLog(response.description)
+    func getJSON<T:Decodable>(urlString: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
+            guard let url = URL(string: urlString) else {
+                return completion(.failure(.invalidURL))
             }
-            if let error = error {
-                NSLog(error as? String ?? "")
-            }
-            if let data = data {
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
-                    completion(json ?? ["": (Any).self])
-                } catch {
-                    NSLog(error as? String ?? "")
+            var request = URLRequest(url: url)
+            let config = URLSessionConfiguration.default
+            config.waitsForConnectivity = true
+            let session = URLSession(configuration: config)
+            request.httpMethod = "GET"
+            let task = session.dataTask(with: request) { (data, response, error) in
+                guard error == nil, let data = data else {
+                    completion(.failure(.unknownError))
+                    return
                 }
+                let decoder = JSONDecoder()
+                let decodedData = try? decoder.decode(T.self, from: data)
+                if decodedData == nil {
+                    completion(.failure(.decodingError))
+                } else {
+                    completion(.success(decodedData!))
+                }
+                
             }
-        })
-        task.resume()
-    }
+            task.resume()
+        }
+    
+   
+}
+
+enum NetworkError: Error {
+    case invalidURL
+    case decodingError
+    case unknownError
 }
