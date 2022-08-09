@@ -40,7 +40,7 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = loginView
-        title = "Login"
+        showTitle("Login")
         changeStatusColor()
         loginView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
     }

@@ -19,6 +19,9 @@
 		7D605A3928A25BD900F2DFFD /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A3828A25BD900F2DFFD /* LoginView.swift */; };
 		7D605A3B28A25BE200F2DFFD /* AnimationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A3A28A25BE200F2DFFD /* AnimationView.swift */; };
 		7D605A3D28A264A500F2DFFD /* MenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A3C28A264A500F2DFFD /* MenuView.swift */; };
+		7D605A3F28A277DA00F2DFFD /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A3E28A277DA00F2DFFD /* MenuButton.swift */; };
+		7D605A4128A277FC00F2DFFD /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A4028A277FC00F2DFFD /* LoginTextField.swift */; };
+		7D605A4328A2782900F2DFFD /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A4228A2782900F2DFFD /* ActionButton.swift */; };
 		E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9414DB626C45CF300512A71 /* AppDelegate.swift */; };
 		E9414DC026C45CF400512A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9414DBF26C45CF400512A71 /* Assets.xcassets */; };
 		E9414DC326C45CF400512A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */; };
@@ -46,6 +49,9 @@
 		7D605A3828A25BD900F2DFFD /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		7D605A3A28A25BE200F2DFFD /* AnimationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationView.swift; sourceTree = "<group>"; };
 		7D605A3C28A264A500F2DFFD /* MenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuView.swift; sourceTree = "<group>"; };
+		7D605A3E28A277DA00F2DFFD /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
+		7D605A4028A277FC00F2DFFD /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
+		7D605A4228A2782900F2DFFD /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapptr iOS Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9414DB626C45CF300512A71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9414DBF26C45CF400512A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -154,6 +160,9 @@
 				7D605A3628A25BBD00F2DFFD /* ChatView.swift */,
 				7D605A3828A25BD900F2DFFD /* LoginView.swift */,
 				7D605A3C28A264A500F2DFFD /* MenuView.swift */,
+				7D605A3E28A277DA00F2DFFD /* MenuButton.swift */,
+				7D605A4028A277FC00F2DFFD /* LoginTextField.swift */,
+				7D605A4228A2782900F2DFFD /* ActionButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -246,6 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D605A3F28A277DA00F2DFFD /* MenuButton.swift in Sources */,
 				7D605A3728A25BBD00F2DFFD /* ChatView.swift in Sources */,
 				E9414DD126C460A600512A71 /* ChatClient.swift in Sources */,
 				7D605A0F28A091C600F2DFFD /* NetworkError.swift in Sources */,
@@ -254,6 +264,7 @@
 				7D567B8F2898735300EF89F2 /* UIColor+Extension.swift in Sources */,
 				E9414DCE26C45F9200512A71 /* LoginClient.swift in Sources */,
 				7D605A3D28A264A500F2DFFD /* MenuView.swift in Sources */,
+				7D605A4128A277FC00F2DFFD /* LoginTextField.swift in Sources */,
 				E9414DE826C4618900512A71 /* MenuViewController.swift in Sources */,
 				7D605A0D28A0916800F2DFFD /* NetworkManager.swift in Sources */,
 				7D605A0628A0788500F2DFFD /* Style.swift in Sources */,
@@ -268,6 +279,7 @@
 				7D605A3B28A25BE200F2DFFD /* AnimationView.swift in Sources */,
 				7D605A3928A25BD900F2DFFD /* LoginView.swift in Sources */,
 				E9414DE626C4618900512A71 /* LoginViewController.swift in Sources */,
+				7D605A4328A2782900F2DFFD /* ActionButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

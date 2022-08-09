@@ -31,21 +31,12 @@ class AnimationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = animationView
-        title = "Animation"
+        showTitle("Animation")
         changeStatusColor()
         animationView.fadeButton.addTarget(self, action: #selector(animatedLogo), for: .touchUpInside)
     }
     
     // MARK: - Actions
-    @IBAction func backAction(_ sender: Any) {
-        let mainMenuViewController = MenuViewController()
-        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
-    }
-    
-    @IBAction func didPressFade(_ sender: Any) {
-        animatedLogo()
-    }
-    
     @objc func animatedLogo() {
         if logoVisable {
             UIView.animate(withDuration: 1.5) {

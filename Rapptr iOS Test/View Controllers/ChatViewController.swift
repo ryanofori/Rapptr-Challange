@@ -6,7 +6,7 @@
 
 import UIKit
 
-class ChatViewController: UIViewController/*, UITableViewDataSource, UITableViewDelegate */{
+class ChatViewController: UIViewController {
     
     /**
      * =========================================================================================
@@ -27,28 +27,12 @@ class ChatViewController: UIViewController/*, UITableViewDataSource, UITableView
     
     var chatView = ChatView()
     
-    var chatTableView = UITableView()
-    
-    // MARK: - Outlets
-//    @IBOutlet weak var chatTable: UITableView!
-    
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view = chatView
         changeStatusColor()
-        view.backgroundColor = Style.Colors.viewBackground//UIColor(hex: "#F9F9F9")
-        
-//        configureTable(tableView: chatTableView)
-        title = "Chat"
-//        chatTableView.frame = view.bounds
-        
-//        chatTableView.translatesAutoresizingMaskIntoConstraints = false
-//        chatTableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
-//        chatTableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-//        chatTableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-//        chatTableView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
+        showTitle("Chat")
         
         NetworkManager.shared.getJSON(urlString: URLManager.messagesURL.rawValue) { (result: Result<Messages, NetworkError>) in
             switch result {
@@ -68,40 +52,4 @@ class ChatViewController: UIViewController/*, UITableViewDataSource, UITableView
         }
     }
     
-    // MARK: - Private
-//    private func configureTable(tableView: UITableView) {
-//        tableView.delegate = self
-//        tableView.dataSource = self
-//        tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
-//        tableView.backgroundColor = Style.Colors.viewBackground //UIColor(hex: "#F9F9F9")
-//        tableView.separatorColor = .clear
-//        [tableView].forEach { view.addSubview($0) }
-////        tableView.tableFooterView = UIView(frame: .zero)
-//    }
 }
-
-//extension ChatViewController: UITableViewDataSource {
-//    // MARK: - UITableViewDataSource
-//    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        guard let messages = messages else { return UITableViewCell() }
-//        guard let cell = chatTableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self)) as? ChatTableViewCell else { return UITableViewCell() }
-//        cell.selectionStyle = .none
-//        cell.setCellData(message: messages[indexPath.row])
-//        return cell
-//    }
-//
-//    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        guard let messages = messages else { return 0 }
-//        return messages.count
-//    }
-//}
-//
-//extension ChatViewController: UITableViewDelegate{
-//    // MARK: - UITableViewDelegate
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return UITableView.automaticDimension
-//    }
-//}

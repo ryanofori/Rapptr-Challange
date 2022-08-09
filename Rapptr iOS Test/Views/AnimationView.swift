@@ -14,7 +14,6 @@ class AnimationView: UIView {
         button.backgroundColor = Style.Colors.buttonBackground //UIColor(hex: "#0E5C89")
         button.setTitle("FADE IN", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.frame =  CGRect(x: 100, y: 100, width: 200, height: 50)
 //        button.addTarget(self, action: #selector(animatedLogo), for: .touchUpInside)
         return button
     }()
@@ -36,7 +35,6 @@ class AnimationView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     func setupView() {
-//        changeStatusColor()
         backgroundColor = Style.Colors.viewBackground //UIColor(hex: "#F9F9F9")
         
         [fadeButton, logoImage].forEach { addSubview($0) }
@@ -51,6 +49,7 @@ class AnimationView: UIView {
         fadeButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         fadeButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
     }
+    
     
 }
 

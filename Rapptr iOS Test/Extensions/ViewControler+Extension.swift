@@ -32,4 +32,11 @@ extension UIViewController {
             statusBar?.backgroundColor = Style.Colors.headerBackground
         }
     }
+    func showTitle(_ name: String){
+        if name.isEmpty {
+            title = ""
+        } else {
+            title = name
+        }
+    }
 }

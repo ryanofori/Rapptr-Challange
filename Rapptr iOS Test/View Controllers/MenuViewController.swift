@@ -36,7 +36,6 @@ class MenuViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view = menuView
-        showTitle(true)
 
         menuView.chatButton.addTarget(self, action: #selector(didPressChatButton), for: .touchUpInside)
         menuView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
@@ -45,21 +44,13 @@ class MenuViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        showTitle(false)
+        showTitle("")
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        showTitle(true)
+        showTitle("Coding Task")
         changeStatusColor()
-    }
-    
-    func showTitle(_ yes: Bool){
-        if yes {
-            title = "Coding Tasks"
-        } else {
-            title = ""
-        }
     }
     
     

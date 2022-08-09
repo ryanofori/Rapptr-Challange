@@ -24,10 +24,12 @@ class ChatTableViewCell: UITableViewCell {
     //    var headerName: UILabel?
     //    var messsageBody: UILabel?
     
-    let profileImage: UIImageView = {
+    let imageSize = CGSize(width: 35, height: 35)
+    
+    lazy var profileImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
-        image.layer.cornerRadius = 17.5
+        image.layer.cornerRadius = imageSize.width/2
         image.clipsToBounds = true
         
         image.translatesAutoresizingMaskIntoConstraints = false
@@ -68,8 +70,8 @@ class ChatTableViewCell: UITableViewCell {
         
         profileImage.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16).isActive = true
         profileImage.leadingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.leadingAnchor, constant: 16).isActive = true
-        profileImage.widthAnchor.constraint(equalToConstant: 35).isActive = true
-        profileImage.heightAnchor.constraint(equalToConstant: 35).isActive = true
+        profileImage.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
+        profileImage.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
         
         headerName.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16).isActive = true
         headerName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 7).isActive = true
