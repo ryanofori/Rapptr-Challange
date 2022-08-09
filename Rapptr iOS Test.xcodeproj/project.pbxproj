@@ -22,6 +22,8 @@
 		7D605A3F28A277DA00F2DFFD /* MenuButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A3E28A277DA00F2DFFD /* MenuButton.swift */; };
 		7D605A4128A277FC00F2DFFD /* LoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A4028A277FC00F2DFFD /* LoginTextField.swift */; };
 		7D605A4328A2782900F2DFFD /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A4228A2782900F2DFFD /* ActionButton.swift */; };
+		7D605A4628A283D200F2DFFD /* AnimationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A4528A283D200F2DFFD /* AnimationViewModel.swift */; };
+		7D605A4828A283E200F2DFFD /* ChatViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A4728A283E200F2DFFD /* ChatViewModel.swift */; };
 		E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9414DB626C45CF300512A71 /* AppDelegate.swift */; };
 		E9414DC026C45CF400512A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9414DBF26C45CF400512A71 /* Assets.xcassets */; };
 		E9414DC326C45CF400512A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */; };
@@ -52,6 +54,8 @@
 		7D605A3E28A277DA00F2DFFD /* MenuButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuButton.swift; sourceTree = "<group>"; };
 		7D605A4028A277FC00F2DFFD /* LoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTextField.swift; sourceTree = "<group>"; };
 		7D605A4228A2782900F2DFFD /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
+		7D605A4528A283D200F2DFFD /* AnimationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationViewModel.swift; sourceTree = "<group>"; };
+		7D605A4728A283E200F2DFFD /* ChatViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewModel.swift; sourceTree = "<group>"; };
 		E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapptr iOS Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9414DB626C45CF300512A71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9414DBF26C45CF400512A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -97,6 +101,15 @@
 			path = Network;
 			sourceTree = "<group>";
 		};
+		7D605A4428A283AA00F2DFFD /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				7D605A4528A283D200F2DFFD /* AnimationViewModel.swift */,
+				7D605A4728A283E200F2DFFD /* ChatViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
 		E9414DAA26C45CF300512A71 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +137,7 @@
 				E9414DD226C4617B00512A71 /* Views */,
 				E9414DCF26C45F9500512A71 /* Clients */,
 				E9414DCC26C45ECD00512A71 /* Models */,
+				7D605A4428A283AA00F2DFFD /* ViewModel */,
 				E9414DD826C4618900512A71 /* View Controllers */,
 				E9414DBF26C45CF400512A71 /* Assets.xcassets */,
 				E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */,
@@ -256,11 +270,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D605A3F28A277DA00F2DFFD /* MenuButton.swift in Sources */,
+				7D605A4628A283D200F2DFFD /* AnimationViewModel.swift in Sources */,
 				7D605A3728A25BBD00F2DFFD /* ChatView.swift in Sources */,
 				E9414DD126C460A600512A71 /* ChatClient.swift in Sources */,
 				7D605A0F28A091C600F2DFFD /* NetworkError.swift in Sources */,
 				7D605A3128A0A03300F2DFFD /* ViewControler+Extension.swift in Sources */,
 				E9414DE126C4618900512A71 /* ChatViewController.swift in Sources */,
+				7D605A4828A283E200F2DFFD /* ChatViewModel.swift in Sources */,
 				7D567B8F2898735300EF89F2 /* UIColor+Extension.swift in Sources */,
 				E9414DCE26C45F9200512A71 /* LoginClient.swift in Sources */,
 				7D605A3D28A264A500F2DFFD /* MenuView.swift in Sources */,

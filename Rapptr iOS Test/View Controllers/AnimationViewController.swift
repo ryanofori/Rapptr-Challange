@@ -24,8 +24,7 @@ class AnimationViewController: UIViewController {
      */
     
     var animationView = AnimationView()
-    
-    var logoVisable = true
+    var animationViewModel = AnimationViewModel()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -38,18 +37,18 @@ class AnimationViewController: UIViewController {
     
     // MARK: - Actions
     @objc func animatedLogo() {
-        if logoVisable {
+        if animationViewModel.logoVisable {
             UIView.animate(withDuration: 1.5) {
                 self.animationView.logoImage.alpha = 0
             }
             animationView.fadeButton.setTitle("Fade Out", for: .normal)
-            logoVisable = false
+            animationViewModel.logoVisable = false
         } else {
             UIView.animate(withDuration: 1.5) {
                 self.animationView.logoImage.alpha = 1
             }
             animationView.fadeButton.setTitle("Fade In", for: .normal)
-            logoVisable = true
+            animationViewModel.logoVisable = true
         }
         
     }
