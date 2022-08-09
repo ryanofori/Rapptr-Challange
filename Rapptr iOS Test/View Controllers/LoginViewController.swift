@@ -43,6 +43,7 @@ class LoginViewController: UIViewController {
         showTitle("Login")
         changeStatusColor()
         loginView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
+//        loginClient.login(email: "", password: "", completion: <#T##(String) -> Void#>, error: <#T##(String?) -> Void#>)
     }
     
     override func didReceiveMemoryWarning() {

@@ -22,8 +22,8 @@ class ChatViewController: UIViewController {
      **/
     
     // MARK: - Properties
-    private var client: ChatClient?
-    private var messages: [Message]?
+    private var client = ChatClient()
+//    private var messages: [Message]?
     
     var chatView = ChatView()
     
@@ -34,24 +34,21 @@ class ChatViewController: UIViewController {
         changeStatusColor()
         showTitle("Chat")
         
-        client?.fetchChatData(urlString: URLManager.messagesURL.rawValue, completion: { (result: Result<[Message], NetworkError>) in
+        client.fetchChatData(urlString: URLManager.messagesURL.rawValue, completion: { (result: Result<Messages, NetworkError>) in
             switch result {
             case .success(let messages):
-                self.chatView.messages = messages
+                print("something")
+                self.chatView.messages = messages.messages
                 DispatchQueue.main.async {
                     self.chatView.chatTableView.reloadData()
                 }
-                print("it worled!!!")
-//                for mesaage in messages.data {
-//                    print(mesaage.name)
-//                }
-                
             case .failure(let error):
-                NSLog(error.localizedDescription)
+                print(error, error.localizedDescription)
             }
         })
         
-//        NetworkManager.shared.getJSON(urlString: URLManager.messagesURL.rawValue) { (result: Result<Messages, NetworkError>) in
+        
+//        NetworkManager.shared.getData(urlString: URLManager.messagesURL.rawValue) { (result: Result<Messages, NetworkError>) in
 //            switch result {
 //            case .success(let messages):
 //                self.chatView.messages = messages.messages
@@ -67,6 +64,8 @@ class ChatViewController: UIViewController {
 //                print("\(error.localizedDescription)")
 //            }
 //        }
+        
+        
     }
     
 }
