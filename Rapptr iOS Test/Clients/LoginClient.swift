@@ -14,7 +14,7 @@ import Foundation
  * 1) Make a request here to login.
  *
  * 2) Using the following endpoint, make a request to login
- *    URL: http://dev.rapptrlabs.com/Tests/scripts/login.php
+ *    URL: https://dev.rapptrlabs.com/Tests/scripts/login.php
  *
  * 3) Don't forget, the endpoint takes two parameters 'email' and 'password'
  *
@@ -24,7 +24,7 @@ import Foundation
 */
 
 class LoginClient {
-    
+    //post
     var session: URLSession?
     
     func login(email: String, password: String, completion: @escaping (String) -> Void, error errorHandler: @escaping (String?) -> Void) {

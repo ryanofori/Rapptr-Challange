@@ -31,94 +31,18 @@ class LoginViewController: UIViewController {
     private var client: LoginClient?
     
     let alert = Alert()
+    let loginClient = LoginClient()
     
-    var backgroundImage: UIImageView = {
-        let backgroundImage = UIImageView(frame: .zero)
-        backgroundImage.image = UIImage(named: "img_login.png")
-        backgroundImage.contentMode = .scaleToFill
-        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
-        return backgroundImage
-    }()
-    
-    var emailField: UITextField = {
-        let emailField = UITextField()
-        emailField.layer.cornerRadius = 5
-        emailField.backgroundColor = .white.withAlphaComponent(0.5) //?
-        //        emailField.placeholder = "Email"
-        emailField.attributedPlaceholder = NSAttributedString(
-            string: "Email",
-            attributes: [NSAttributedString.Key.foregroundColor : UIColor(hex: "#5F6063")])
-        emailField.textColor = UIColor(hex: "#1B1E1F")
-        emailField.font = emailField.font?.withSize(16)
-        emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.layer.cornerRadius = 8
-        emailField.leftViewMode = .always
-        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: emailField.frame.height))
-        return emailField
-    }()
-    
-    var passwordField: UITextField = {
-        let passwordField = UITextField()
-        passwordField.layer.cornerRadius = 5
-        passwordField.backgroundColor = .white.withAlphaComponent(0.4)
-//        passwordField.placeholder = "Password"
-        passwordField.attributedPlaceholder = NSAttributedString(
-            string: "Email",
-            attributes: [NSAttributedString.Key.foregroundColor : UIColor(hex: "#5F6063")])
-        passwordField.textColor = UIColor(hex: "#1B1E1F")
-        passwordField.font = passwordField.font?.withSize(16)
-        passwordField.layer.cornerRadius = 8
-        passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.leftViewMode = .always
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: passwordField.frame.height))
-        return passwordField
-    }()
-    
-    var loginButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.tintColor = Style.Colors.ButtonTextColor
-        button.backgroundColor = Style.Colors.buttonBackground //UIColor(hex: "#0E5C89")
-        button.setTitle("LOGIN", for: .normal)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
-        button.addTarget(self, action: #selector(showStuff), for: .touchUpInside)
-        return button
-    }()
+    var loginView = LoginView()
     
     //    @IBOutlet weak var loginButton: UIButton!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view = loginView
         title = "Login"
-        
-        //        view.backgroundColor = UIColor(patternImage: UIImage(named: "img_login.png") ?? UIImage())
-        //        view.insertSubview(backgroundImage, at: 0)
-        [backgroundImage, emailField, passwordField, loginButton].forEach { view.addSubview($0) }
-        
-        backgroundImage.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        backgroundImage.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        backgroundImage.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
-        
-        
-        emailField.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        emailField.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant:  64).isActive = true
-        emailField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        emailField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        
-        
-        passwordField.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,constant: 24).isActive = true
-        passwordField.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        passwordField.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
-        
-        
-        loginButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
-        loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 24).isActive = true
-        loginButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 30).isActive = true
-        loginButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -30).isActive = true
+        changeStatusColor()
+        loginView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
     }
     
     override func didReceiveMemoryWarning() {
@@ -127,27 +51,47 @@ class LoginViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func backAction(_ sender: Any) {
-        naviagateToPrevious()
+    
+    @objc func naviagateToPrevious() {
+        navigationController?.popViewController(animated: true)
     }
     
-    func naviagateToPrevious() {
-        let mainMenuViewController = MenuViewController()
-        self.navigationController?.pushViewController(mainMenuViewController, animated: true)
+    @objc func didPressLoginButton() {
+        postRequest()
+        //        loginClient.login(email: emailField.text ?? "" , password: passwordField.text ?? "", completion: <#T##(String) -> Void#>, error: <#T##(String?) -> Void#>)
+        //        DispatchQueue.main.async {
+        //            let alertController = UIAlertController(title: "mesageTitle", message: "messageDesc", preferredStyle: .actionSheet)
+        //            alertController.addAction(UIAlertAction(title: "OK", style: .default,handler: {_ in
+        //                self.naviagateToPrevious()
+        //            }))
+        //            self.present(alertController, animated: true)
+        //        }
     }
     
-    @IBAction func didPressLoginButton(_ sender: Any) {
-        //        NetworkManager.shared.getData(urlString: "", completion: <#T##(Data) -> Void#>)
-        alert.showAlert(mesageTitle: "I did somethin", messageDesc: "I am here!", viewController: self)
-    }
-    @objc func showStuff() {
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(title: "mesageTitle", message: "messageDesc", preferredStyle: .actionSheet)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alertController, animated: true) {
-                print("I was pressed")
+    func postRequest(){
+        let param = ["email": "info@rapptrlabs.com", "password": "Test123"]
+        guard let url = URL(string: URLManager.loginURL.rawValue) else { return }
+//        let postString = "email=info@rapptrlabs.com&password=Test123"
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        let postString = (param.compactMap{ "\($0)=\($1)"}).joined(separator: "&")
+        request.httpBody = postString.data(using: .utf8)
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error  in
+            if let response = response{
+                print(response)
             }
-        }
+            if let data = data {
+                do{
+                    let json = try JSONSerialization.jsonObject(with: data, options: [])
+                    print(json)
+                }
+                catch {
+                    print(error)
+                }
+            }
+        })
+        task.resume()
     }
     
 }
@@ -160,43 +104,4 @@ class Alert {
             viewController.present(alertController, animated: true, completion: nil)
         }
     }
-}
-class NetworkManager {
-    static let shared = NetworkManager()
-    
-    private init() {}
-    
-    func getJSON<T:Decodable>(urlString: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
-            guard let url = URL(string: urlString) else {
-                return completion(.failure(.invalidURL))
-            }
-            var request = URLRequest(url: url)
-            let config = URLSessionConfiguration.default
-            config.waitsForConnectivity = true
-            let session = URLSession(configuration: config)
-            request.httpMethod = "GET"
-            let task = session.dataTask(with: request) { (data, response, error) in
-                guard error == nil, let data = data else {
-                    completion(.failure(.unknownError))
-                    return
-                }
-                let decoder = JSONDecoder()
-                let decodedData = try? decoder.decode(T.self, from: data)
-                if decodedData == nil {
-                    completion(.failure(.decodingError))
-                } else {
-                    completion(.success(decodedData!))
-                }
-                
-            }
-            task.resume()
-        }
-    
-   
-}
-
-enum NetworkError: Error {
-    case invalidURL
-    case decodingError
-    case unknownError
 }

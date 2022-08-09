@@ -23,10 +23,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let rootController = MenuViewController()
         let navigationController = UINavigationController(rootViewController: rootController)
 //        navigationController.navigationBar.isTranslucent = false
-        navigationController.navigationBar.backgroundColor = UIColor(hex: "#0E5C89")
-        navigationController.navigationBar.tintColor = .white
+        navigationController.navigationBar.backgroundColor = Style.Colors.headerBackground //UIColor(hex: "#0E5C89")
+        navigationController.navigationBar.tintColor = Style.Colors.HeaderTextColor //.white
+        navigationController.navigationBar.barStyle = .black
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
-        
+        navigationController.navigationBar.inputViewController?.changeStatusColor()
         window?.rootViewController = navigationController
     }
     
@@ -57,6 +58,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+    
+    
     
     
 }

@@ -24,6 +24,8 @@ struct Style {
         static let LoginPlaceholderColor = UIColor(hex: "#5F6063")
         static let LoginFilledColor = UIColor(hex: "#1B1E1F")
         
+        static let BubbleColor = UIColor(hex: "#EFEFEF")
+        
         static let headerBackground = UIColor(hex: "#0E5C89")
         static let buttonBackground = UIColor(hex: "#0E5C89")
         static let viewBackground = UIColor(hex: "#F9F9F9")
