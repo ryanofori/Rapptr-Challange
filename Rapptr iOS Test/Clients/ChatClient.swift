@@ -20,8 +20,6 @@ import Foundation
 
 class ChatClient {
     
-    var session: URLSession?
-    
     func fetchChatData<T:Decodable>(urlString: String, completion: @escaping (Result<T, NetworkError>) -> Void) {
         guard let url = URL(string: urlString) else {
             return completion(.failure(.invalidURL))

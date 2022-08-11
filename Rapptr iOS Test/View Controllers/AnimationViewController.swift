@@ -29,10 +29,12 @@ class AnimationViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view = animationView
         showTitle("Animation")
         changeStatusColor()
         setUpLogo()
+        
         animationView.fadeButton.addTarget(self, action: #selector(animatedLogo), for: .touchUpInside)
         
     }
@@ -47,6 +49,7 @@ class AnimationViewController: UIViewController {
     
     // MARK: - Actions
     @objc func animatedLogo() {
+        
         if animationViewModel.islogoVisable {
             UIView.animate(withDuration: 1.5) {
                 self.animationView.logoImage.alpha = 0

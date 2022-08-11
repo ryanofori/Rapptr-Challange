@@ -6,7 +6,9 @@
 //
 
 import UIKit
+
 extension String {
+    
     var toImage: UIImage {
         if let imageURL = URL(string: self) {
             if let data = try? Data(contentsOf: imageURL) {

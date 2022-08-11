@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+
 class ChatView: UIView {
     var chatTableView = UITableView()
     var chatViewModel = ChatViewModel()
@@ -42,7 +43,7 @@ class ChatView: UIView {
     
 }
 extension ChatView: UITableViewDataSource {
-    // MARK: - UITableViewDataSource
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = chatTableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self)) as? ChatTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
@@ -56,7 +57,7 @@ extension ChatView: UITableViewDataSource {
 }
 
 extension ChatView: UITableViewDelegate{
-    // MARK: - UITableViewDelegate
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableView.automaticDimension
     }

@@ -37,15 +37,11 @@ class LoginViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view = loginView
         showTitle("Login")
         changeStatusColor()
         loginView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: - Actions
@@ -55,19 +51,22 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didPressLoginButton() {
+        
         guard let emailText = loginView.emailField.text else { return }
         guard let passwordText = loginView.passwordField.text else { return }
+        
         client.login(email: emailText, password: passwordText) { (result: (Result<Int, NetworkError>)) in
             switch result {
             case .success(let success):
+                
                 self.loginViewModel = self.client.loginViewModel
                 self.alert.showAlert(mesageTitle: "Success", messageDesc: "\(success) mils", viewController: self){ _ in
-                    //
                     if self.loginViewModel?.loginResponse?.code == "Success" {
                         self.naviagateToPrevious()
                     }
                 }
             case .failure(let error):
+                
                 self.alert.showAlert(mesageTitle: "Error", messageDesc: "\(error): \(error.localizedDescription)", viewController: self){ _ in
                 }
             }

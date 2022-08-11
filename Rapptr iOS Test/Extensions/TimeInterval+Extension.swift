@@ -6,7 +6,9 @@
 //
 
 import Foundation
-extension TimeInterval {    
+
+extension TimeInterval {
+    
     var millisecond: Int {
             Int((self*1000).truncatingRemainder(dividingBy: 1000))
         }

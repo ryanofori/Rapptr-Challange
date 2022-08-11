@@ -6,6 +6,8 @@
 //
 
 import Foundation
+
 class LoginViewModel {
+    
     var loginResponse: LoginResponse?
 }

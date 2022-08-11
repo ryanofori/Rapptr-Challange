@@ -30,6 +30,7 @@ class ChatViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         chatView.chatViewModel = chatViewModel
         view = chatView
         changeStatusColor()
@@ -38,17 +39,21 @@ class ChatViewController: UIViewController {
     }
     
     func getChatData() {
+        
         client.fetchChatData(urlString: URLManager.messagesURL.rawValue, completion: { (result: Result<Messages, NetworkError>) in
             switch result {
             case .success(let messages):
+                
                 self.chatViewModel.messages = messages.messages
                 DispatchQueue.main.async {
                     self.chatView.chatTableView.reloadData()
                 }
             case .failure(let error):
+                
                 NSLog(error.localizedDescription)
             }
         })
+        
     }
     
 }

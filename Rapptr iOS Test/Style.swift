@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
+
 struct Style {
+    
     struct Fonts {
         static let headerText = UIFont.systemFont(ofSize: 17, weight: .semibold)
         

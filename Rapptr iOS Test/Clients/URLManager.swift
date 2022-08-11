@@ -6,7 +6,10 @@
 //
 
 import Foundation
+
 enum URLManager: String {
+    
     case messagesURL = "https://dev.rapptrlabs.com/Tests/scripts/chat_log.php"
     case loginURL =  "https://dev.rapptrlabs.com/Tests/scripts/login.php"
+    
 }

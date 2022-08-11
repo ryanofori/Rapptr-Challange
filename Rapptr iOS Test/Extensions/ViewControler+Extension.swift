@@ -7,8 +7,11 @@
 
 import Foundation
 import UIKit
+
 extension UIViewController {
+    
     func changeStatusColor() {
+        
         if #available(iOS 13.0, *) {
             let app = UIApplication.shared
             let statusBarHeight: CGFloat = app.statusBarFrame.size.height
@@ -32,7 +35,9 @@ extension UIViewController {
             statusBar?.backgroundColor = Style.Colors.headerBackground
         }
     }
+    
     func showTitle(_ name: String){
+        
         if name.isEmpty {
             title = ""
         } else {

@@ -6,11 +6,14 @@
 //
 
 import Foundation
+
 enum NetworkError: Error {
+    
     case invalidURL
     case decodingError
     case responseError
     case jsonObjectError
     case unknownError
     case badData
+    
 }

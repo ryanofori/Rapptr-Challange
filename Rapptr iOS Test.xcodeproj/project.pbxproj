@@ -27,6 +27,7 @@
 		7D605AB128A5A4C800F2DFFD /* Rapptr_iOS_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605AB028A5A4C800F2DFFD /* Rapptr_iOS_TestTests.swift */; };
 		7D605ABD28A5AB2B00F2DFFD /* LoginFailure.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D605ABB28A5A71A00F2DFFD /* LoginFailure.json */; };
 		7D605ABE28A5AB3000F2DFFD /* LoginSuccess.json in Resources */ = {isa = PBXBuildFile; fileRef = 7D605ABC28A5A73200F2DFFD /* LoginSuccess.json */; };
+		7D605AC228A5B7A100F2DFFD /* JSONParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605AC128A5B7A100F2DFFD /* JSONParser.swift */; };
 		E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9414DB626C45CF300512A71 /* AppDelegate.swift */; };
 		E9414DC026C45CF400512A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9414DBF26C45CF400512A71 /* Assets.xcassets */; };
 		E9414DC326C45CF400512A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */; };
@@ -73,6 +74,7 @@
 		7D605AB028A5A4C800F2DFFD /* Rapptr_iOS_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Rapptr_iOS_TestTests.swift; sourceTree = "<group>"; };
 		7D605ABB28A5A71A00F2DFFD /* LoginFailure.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginFailure.json; sourceTree = "<group>"; };
 		7D605ABC28A5A73200F2DFFD /* LoginSuccess.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = LoginSuccess.json; sourceTree = "<group>"; };
+		7D605AC128A5B7A100F2DFFD /* JSONParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParser.swift; sourceTree = "<group>"; };
 		E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapptr iOS Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9414DB626C45CF300512A71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9414DBF26C45CF400512A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -131,6 +133,7 @@
 		7D605AAF28A5A4C800F2DFFD /* Rapptr iOS TestTests */ = {
 			isa = PBXGroup;
 			children = (
+				7D605AC128A5B7A100F2DFFD /* JSONParser.swift */,
 				7D605AB028A5A4C800F2DFFD /* Rapptr_iOS_TestTests.swift */,
 				7D605ABB28A5A71A00F2DFFD /* LoginFailure.json */,
 				7D605ABC28A5A73200F2DFFD /* LoginSuccess.json */,
@@ -329,6 +332,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D605AC228A5B7A100F2DFFD /* JSONParser.swift in Sources */,
 				7D605AB128A5A4C800F2DFFD /* Rapptr_iOS_TestTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

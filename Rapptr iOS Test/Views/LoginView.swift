@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
+
 class LoginView: UIView {
+    
     var backgroundImage: UIImageView = {
         let backgroundImage = UIImageView(frame: .zero)
         backgroundImage.image = UIImage(named: "img_login.png")
@@ -77,7 +79,7 @@ class LoginView: UIView {
         commonField.backgroundColor = Style.Colors.LoginBackground
         commonField.attributedPlaceholder = NSAttributedString(
             string: placeHolder,
-            attributes: [NSAttributedString.Key.foregroundColor : Style.Colors.LoginPlaceholderColor  /*UIColor(hex: "#5F6063")*/])
+            attributes: [NSAttributedString.Key.foregroundColor : Style.Colors.LoginPlaceholderColor])
         commonField.textColor = Style.Colors.LoginFilledColor //UIColor(hex: "#1B1E1F")
         commonField.font = commonField.font?.withSize(16)
         commonField.translatesAutoresizingMaskIntoConstraints = false

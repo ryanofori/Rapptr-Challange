@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
+
 class MenuView: UIView {
+    
     var stackView = UIStackView()
     
     let imageSize = CGSize(width: 24, height: 24)

@@ -7,7 +7,9 @@
 
 import Foundation
 import UIKit
+
 class AnimationView: UIView {
+    
     var fadeButton: UIButton = {
         let button = UIButton(type: .system)
         button.tintColor = Style.Colors.ButtonTextColor //UIColor(hex: "#FFFFFF")

@@ -28,8 +28,6 @@ class MenuViewController: UIViewController {
      * =========================================================================================
      */
     
-    // MARK: - Outlets
-    
     var menuView = MenuView()
     
     // MARK: - Lifecycle

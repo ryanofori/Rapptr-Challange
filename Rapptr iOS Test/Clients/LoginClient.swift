@@ -24,23 +24,27 @@ import Foundation
 */
 
 class LoginClient {
+    
     var loginViewModel = LoginViewModel()
     
     func login(email: String, password: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
         guard let url = URL(string: URLManager.loginURL.rawValue)else { return }
         
-        let param = ["email": "info@rapptrlabs.com", "password": "Test123a"]
+        var param = ["email": email, "password": password]
+        
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
+        
         let postString = (param.compactMap{ "\($0)=\($1)"}).joined(separator: "&")
         request.httpBody = postString.data(using: .utf8)
+        
         let start : TimeInterval = NSDate.timeIntervalSinceReferenceDate
         let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error  in
             if let error = error {
                 completion(.failure(.unknownError))
             }
             if let response = response{
-                print(response)
+                NSLog("\(response)")
             }
             if let data = data {
                 do{
