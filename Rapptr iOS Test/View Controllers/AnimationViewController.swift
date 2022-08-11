@@ -18,7 +18,7 @@ class AnimationViewController: UIViewController {
      *
      * 3) User should be able to drag the logo around the screen with his/her fingers
      *
-     * 4) Add a bonus to make yourself stick out. Music, color, fireworks, explosions!!! Have Swift experience? Why not write the Animation 
+     * 4) Add a bonus to make yourself stick out. Music, color, fireworks, explosions!!! Have Swift experience? Why not write the Animation
      *    section in Swfit to show off your skills. Anything your heart desires!
      *
      */
@@ -53,7 +53,7 @@ class AnimationViewController: UIViewController {
             }
             animationView.fadeButton.setTitle("Fade In", for: .normal)
             animationViewModel.islogoVisable = false
-            createLayer()
+            confetiiLayer()
             
         } else {
             UIView.animate(withDuration: 1.5) {
@@ -61,11 +61,11 @@ class AnimationViewController: UIViewController {
             }
             animationView.fadeButton.setTitle("Fade Out", for: .normal)
             animationViewModel.islogoVisable = true
-            createLayer()
+            confetiiLayer()
         }
     }
     
-    private func createLayer() {
+    private func confetiiLayer() {
         
         let layer = CAEmitterLayer()
         layer.emitterPosition = CGPoint(x: view.center.x, y: -100)
