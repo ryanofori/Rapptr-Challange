@@ -11,3 +11,12 @@ Bonus Points:
 - Show us you can add Cocoapods to this project. We will allow the use of one single pod.
 
 Good luck!
+
+## How to run
+1. Download or clone to the project
+
+2. Open the Rapptr iOS Test.xcodeproj file 
+
+3. Press the run (play) button or you can run it on your simulator
+
+Showcase

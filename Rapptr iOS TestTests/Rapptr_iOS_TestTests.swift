@@ -23,7 +23,6 @@ class Rapptr_iOS_TestTests: XCTestCase {
         switch result {
         case .success(let model):
             XCTAssert(model.code == "Success", "found: \(model.code)")
-            XCTAssert(model.message == "Login Successful!", "found: \(model.message)")
         case .failure(let error):
             XCTFail("Error type: \(error)")
         }

@@ -93,8 +93,8 @@ class AnimationViewController: UIViewController {
         if animationViewModel.islogoVisable {
             view.layer.addSublayer(layer)
         } else {
-            view.layer.sublayers?.forEach {
-                if $0.name == "confetii" {
+            view.layer.sublayers?.forEach { layer in
+                if layer.name == "confetii" {
                     layer.removeFromSuperlayer()
                 }
             }
