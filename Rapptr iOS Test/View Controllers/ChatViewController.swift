@@ -23,22 +23,25 @@ class ChatViewController: UIViewController {
     
     // MARK: - Properties
     private var client = ChatClient()
-//    private var messages: [Message]?
     
     var chatView = ChatView()
+    var chatViewModel = ChatViewModel()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        chatView.chatViewModel = chatViewModel
         view = chatView
         changeStatusColor()
         showTitle("Chat")
-        
+        getChatData()
+    }
+    
+    func getChatData() {
         client.fetchChatData(urlString: URLManager.messagesURL.rawValue, completion: { (result: Result<Messages, NetworkError>) in
             switch result {
             case .success(let messages):
-                print("something")
-                self.chatView.messages = messages.messages
+                self.chatViewModel.messages = messages.messages
                 DispatchQueue.main.async {
                     self.chatView.chatTableView.reloadData()
                 }
@@ -46,26 +49,6 @@ class ChatViewController: UIViewController {
                 print(error, error.localizedDescription)
             }
         })
-        
-        
-//        NetworkManager.shared.getData(urlString: URLManager.messagesURL.rawValue) { (result: Result<Messages, NetworkError>) in
-//            switch result {
-//            case .success(let messages):
-//                self.chatView.messages = messages.messages
-//                DispatchQueue.main.async {
-//                    self.chatView.chatTableView.reloadData()
-//                }
-//                print("it worled!!!")
-////                for mesaage in messages.data {
-////                    print(mesaage.name)
-////                }
-//
-//            case .failure(let error):
-//                print("\(error.localizedDescription)")
-//            }
-//        }
-        
-        
     }
     
 }

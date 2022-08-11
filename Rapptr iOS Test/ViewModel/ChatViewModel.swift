@@ -7,5 +7,5 @@
 
 import Foundation
 class ChatViewModel {
-//    var messages = [Message]()
+    var messages = [Message]()
 }
