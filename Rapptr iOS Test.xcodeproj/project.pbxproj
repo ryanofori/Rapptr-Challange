@@ -24,10 +24,6 @@
 		7D605A7C28A492AC00F2DFFD /* JSONResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A7B28A492AC00F2DFFD /* JSONResponse.swift */; };
 		7D605A7E28A493FF00F2DFFD /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A7D28A493FF00F2DFFD /* LoginViewModel.swift */; };
 		7D605A8028A5214F00F2DFFD /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A7F28A5214F00F2DFFD /* Alert.swift */; };
-		7D605A8328A5333C00F2DFFD /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A8228A5333C00F2DFFD /* Coordinator.swift */; };
-		7D605A8528A5357100F2DFFD /* ChatCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A8428A5357100F2DFFD /* ChatCoordinator.swift */; };
-		7D605A8728A5357F00F2DFFD /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A8628A5357F00F2DFFD /* LoginCoordinator.swift */; };
-		7D605A8928A5359900F2DFFD /* AnimationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D605A8828A5359900F2DFFD /* AnimationCoordinator.swift */; };
 		E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9414DB626C45CF300512A71 /* AppDelegate.swift */; };
 		E9414DC026C45CF400512A71 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9414DBF26C45CF400512A71 /* Assets.xcassets */; };
 		E9414DC326C45CF400512A71 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E9414DC126C45CF400512A71 /* LaunchScreen.storyboard */; };
@@ -60,10 +56,6 @@
 		7D605A7B28A492AC00F2DFFD /* JSONResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONResponse.swift; sourceTree = "<group>"; };
 		7D605A7D28A493FF00F2DFFD /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
 		7D605A7F28A5214F00F2DFFD /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
-		7D605A8228A5333C00F2DFFD /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		7D605A8428A5357100F2DFFD /* ChatCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCoordinator.swift; sourceTree = "<group>"; };
-		7D605A8628A5357F00F2DFFD /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		7D605A8828A5359900F2DFFD /* AnimationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationCoordinator.swift; sourceTree = "<group>"; };
 		E9414DB326C45CF300512A71 /* Rapptr iOS Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Rapptr iOS Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9414DB626C45CF300512A71 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E9414DBF26C45CF400512A71 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -112,17 +104,6 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		7D605A8128A5333000F2DFFD /* Coordinator */ = {
-			isa = PBXGroup;
-			children = (
-				7D605A8228A5333C00F2DFFD /* Coordinator.swift */,
-				7D605A8428A5357100F2DFFD /* ChatCoordinator.swift */,
-				7D605A8628A5357F00F2DFFD /* LoginCoordinator.swift */,
-				7D605A8828A5359900F2DFFD /* AnimationCoordinator.swift */,
-			);
-			path = Coordinator;
-			sourceTree = "<group>";
-		};
 		E9414DAA26C45CF300512A71 = {
 			isa = PBXGroup;
 			children = (
@@ -142,7 +123,6 @@
 		E9414DB526C45CF300512A71 /* Rapptr iOS Test */ = {
 			isa = PBXGroup;
 			children = (
-				7D605A8128A5333000F2DFFD /* Coordinator */,
 				7D567B8D2898708300EF89F2 /* Extensions */,
 				E9414DB626C45CF300512A71 /* AppDelegate.swift */,
 				E9414DE926C468D700512A71 /* SceneDelegate.swift */,
@@ -293,22 +273,18 @@
 				7D567B8F2898735300EF89F2 /* UIColor+Extension.swift in Sources */,
 				E9414DCE26C45F9200512A71 /* LoginClient.swift in Sources */,
 				7D605A3D28A264A500F2DFFD /* MenuView.swift in Sources */,
-				7D605A8728A5357F00F2DFFD /* LoginCoordinator.swift in Sources */,
 				E9414DE826C4618900512A71 /* MenuViewController.swift in Sources */,
 				7D605A0628A0788500F2DFFD /* Style.swift in Sources */,
-				7D605A8528A5357100F2DFFD /* ChatCoordinator.swift in Sources */,
 				E9414DCB26C45EC900512A71 /* Messages.swift in Sources */,
 				E9414DEA26C468D700512A71 /* SceneDelegate.swift in Sources */,
 				7D605A8028A5214F00F2DFFD /* Alert.swift in Sources */,
 				E9414DD626C4617B00512A71 /* ChatTableViewCell.swift in Sources */,
 				E9414DE226C4618900512A71 /* AnimationViewController.swift in Sources */,
 				7D605A3328A1B3A900F2DFFD /* URLManager.swift in Sources */,
-				7D605A8328A5333C00F2DFFD /* Coordinator.swift in Sources */,
 				7D605A3528A2537400F2DFFD /* HTTPMethod.swift in Sources */,
 				7D605A7728A48E4700F2DFFD /* TimeInterval+Extension.swift in Sources */,
 				E9414DB726C45CF300512A71 /* AppDelegate.swift in Sources */,
 				7D605A0A28A087BC00F2DFFD /* String+Extension.swift in Sources */,
-				7D605A8928A5359900F2DFFD /* AnimationCoordinator.swift in Sources */,
 				7D605A3B28A25BE200F2DFFD /* AnimationView.swift in Sources */,
 				7D605A3928A25BD900F2DFFD /* LoginView.swift in Sources */,
 				E9414DE626C4618900512A71 /* LoginViewController.swift in Sources */,
