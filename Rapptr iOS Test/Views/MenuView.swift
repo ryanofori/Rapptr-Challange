@@ -21,47 +21,22 @@ class MenuView: UIView {
     }()
     
     lazy var chatButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = commonButton()
         button.setImage(UIImage(named: "ic_chat.png"), for: .normal)
-        button.backgroundColor = .white.withAlphaComponent(0.8)
-        button.tintColor = .black
-        button.layer.cornerRadius = 8
-        button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("CHAT", for: .normal)
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 46, bottom: 0, right: 0)
-        button.contentHorizontalAlignment = .left
-//        button.addTarget(self, action: #selector(didPressChatButton), for: .touchUpInside)
         return button
     }()
     
-    var loginButton: UIButton = {
-        let button = UIButton(type: .system)
+    lazy var loginButton: UIButton = {
+        let button = commonButton()
         button.setImage(UIImage(named: "ic_login.png"), for: .normal)
-        button.backgroundColor = .white.withAlphaComponent(0.8)
-        button.tintColor = .black
-        button.layer.cornerRadius = 8
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 0)
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 46, bottom: 0, right: 0)
-        button.contentHorizontalAlignment = .left
-//        button.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
         button.setTitle("LOGIN", for: .normal)
         return button
     }()
-    var animationButton: UIButton = {
-        
-        let button = UIButton(type: .system)
+    
+    lazy var animationButton: UIButton = {
+        let button = commonButton()
         button.setImage(UIImage(named: "ic_animation.png"), for: .normal)
-        button.backgroundColor = .white.withAlphaComponent(0.8)
-        button.tintColor = .black
-        button.layer.cornerRadius = 8
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 0)
-        
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 46, bottom: 0, right: 0)
-        button.contentHorizontalAlignment = .left
-//        button.addTarget(self, action: #selector(didPressAnimationButton), for: .touchUpInside)
         button.setTitle("ANIMATION", for: .normal)
         return button
     }()
@@ -80,14 +55,12 @@ class MenuView: UIView {
         
         [backgroundImage, stackView].forEach { addSubview($0) }
         
-        //background
         backgroundImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
         backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         backgroundImage.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         backgroundImage.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         
         
-        //stackview
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.centerYAnchor.constraint(equalTo: safeAreaLayoutGuide.centerYAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor,constant: 30).isActive = true
@@ -95,11 +68,25 @@ class MenuView: UIView {
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
         stackView.spacing = 24
+        
         [chatButton, loginButton, animationButton].forEach { stackView.addArrangedSubview($0) }
         
         chatButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         loginButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         animationButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
+    }
+    
+    func commonButton() -> UIButton {
+        let button = UIButton(type: .system)
+        button.backgroundColor = Style.Colors.menuButtonBackground
+        button.tintColor = Style.Colors.menuButtonLabel
+        button.titleLabel?.font = Style.Fonts.menuText
+        button.layer.cornerRadius = 8
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 22, bottom: 0, right: 0)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 40, bottom: 0, right: 0)
+        button.contentHorizontalAlignment = .left
+        return button
     }
     
 }

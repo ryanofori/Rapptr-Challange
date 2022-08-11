@@ -28,14 +28,12 @@ class LoginViewController: UIViewController {
      **/
     
     // MARK: - Properties
-    private var client: LoginClient?
-    
     let alert = Alert()
-    let loginClient = LoginClient()
+    private var client = LoginClient()
     
     var loginView = LoginView()
+    var loginViewModel: LoginViewModel?
     
-    //    @IBOutlet weak var loginButton: UIButton!
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,7 +41,6 @@ class LoginViewController: UIViewController {
         showTitle("Login")
         changeStatusColor()
         loginView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
-//        loginClient.login(email: "", password: "", completion: <#T##(String) -> Void#>, error: <#T##(String?) -> Void#>)
     }
     
     override func didReceiveMemoryWarning() {
@@ -58,51 +55,20 @@ class LoginViewController: UIViewController {
     }
     
     @objc func didPressLoginButton() {
-        postRequest()
-        //        loginClient.login(email: emailField.text ?? "" , password: passwordField.text ?? "", completion: <#T##(String) -> Void#>, error: <#T##(String?) -> Void#>)
-        //        DispatchQueue.main.async {
-        //            let alertController = UIAlertController(title: "mesageTitle", message: "messageDesc", preferredStyle: .actionSheet)
-        //            alertController.addAction(UIAlertAction(title: "OK", style: .default,handler: {_ in
-        //                self.naviagateToPrevious()
-        //            }))
-        //            self.present(alertController, animated: true)
-        //        }
-    }
-    
-    func postRequest(){
-        let param = ["email": "info@rapptrlabs.com", "password": "Test123"]
-        guard let url = URL(string: URLManager.loginURL.rawValue) else { return }
-//        let postString = "email=info@rapptrlabs.com&password=Test123"
-        var request = URLRequest(url: url)
-        request.httpMethod = HTTPMethod.post.rawValue
-        let postString = (param.compactMap{ "\($0)=\($1)"}).joined(separator: "&")
-        request.httpBody = postString.data(using: .utf8)
-        
-        let task = URLSession.shared.dataTask(with: request, completionHandler: {data, response, error  in
-            if let response = response{
-                print(response)
-            }
-            if let data = data {
-                do{
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    print(json)
+        guard let emailText = loginView.emailField.text else { return }
+        guard let passwordText = loginView.passwordField.text else { return }
+        client.login(email: emailText, password: passwordText) { (result: (Result<Int, NetworkError>)) in
+            switch result {
+            case .success(let success):
+                self.alert.showAlert(mesageTitle: "Success", messageDesc: "\(success) mils", viewController: self){ _ in
+                    if self.loginViewModel?.jsonResponse?.code == "Success" {
+                        self.naviagateToPrevious()
+                    }
                 }
-                catch {
-                    print(error)
+            case .failure(let error):
+                self.alert.showAlert(mesageTitle: "Error", messageDesc: "\(error): \(error.localizedDescription)", viewController: self){ _ in
                 }
             }
-        })
-        task.resume()
-    }
-    
-}
-
-class Alert {
-    func showAlert(mesageTitle: String, messageDesc: String, viewController: UIViewController) {
-        DispatchQueue.main.async {
-            let alertController = UIAlertController(title: mesageTitle, message: messageDesc, preferredStyle: .alert)
-            alertController.addAction(UIAlertAction(title: "OK", style: .default))
-            viewController.present(alertController, animated: true, completion: nil)
         }
     }
 }

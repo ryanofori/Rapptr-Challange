@@ -12,9 +12,9 @@ class AnimationView: UIView {
         let button = UIButton(type: .system)
         button.tintColor = Style.Colors.ButtonTextColor //UIColor(hex: "#FFFFFF")
         button.backgroundColor = Style.Colors.buttonBackground //UIColor(hex: "#0E5C89")
+        button.titleLabel?.font = Style.Fonts.buttonText
         button.setTitle("FADE IN", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-//        button.addTarget(self, action: #selector(animatedLogo), for: .touchUpInside)
         return button
     }()
     

@@ -26,7 +26,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.navigationBar.backgroundColor = Style.Colors.headerBackground //UIColor(hex: "#0E5C89")
         navigationController.navigationBar.tintColor = Style.Colors.HeaderTextColor //.white
         navigationController.navigationBar.barStyle = .black
-        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: UIFont.systemFont(ofSize: 17, weight: .semibold)]
+        navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: Style.Fonts.headerText /*UIFont.systemFont(ofSize: 17, weight: .semibold)*/]
         navigationController.navigationBar.inputViewController?.changeStatusColor()
         window?.rootViewController = navigationController
     }

@@ -18,11 +18,6 @@ class ChatTableViewCell: UITableViewCell {
      **/
     
     // MARK: - Outlets
-    //    @IBOutlet weak var header: UILabel!
-    //    @IBOutlet weak var body: UILabel!
-    //    var profileImage: UIImageView?
-    //    var headerName: UILabel?
-    //    var messsageBody: UILabel?
     
     let imageSize = CGSize(width: 35, height: 35)
     
@@ -31,15 +26,14 @@ class ChatTableViewCell: UITableViewCell {
         image.contentMode = .scaleAspectFill
         image.layer.cornerRadius = imageSize.width/2
         image.clipsToBounds = true
-        
         image.translatesAutoresizingMaskIntoConstraints = false
         return image
     }()
     
-    let headerName: UILabel = {
+    let chatName: UILabel = {
         let name = UILabel()
         name.translatesAutoresizingMaskIntoConstraints = false
-        name.font = UIFont.systemFont(ofSize: 13, weight: .semibold)
+        name.font = Style.Fonts.chatUserName // UIFont.systemFont(ofSize: 13, weight: .semibold)
         name.textColor = Style.Colors.ChatUserNameColor //UIColor(hex: "#1B1E1F")
         return name
     }()
@@ -54,7 +48,7 @@ class ChatTableViewCell: UITableViewCell {
         body.textContainerInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         body.isScrollEnabled = false
         body.isEditable = false
-        body.font = UIFont.systemFont(ofSize: 15)
+        body.font = Style.Fonts.chatMessage //UIFont.systemFont(ofSize: 15)
         body.textContainer.lineBreakMode = .byWordWrapping
         body.backgroundColor = .white
         return body
@@ -63,7 +57,7 @@ class ChatTableViewCell: UITableViewCell {
     //used for instatiaing and dequeing cell
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        [profileImage, headerName, bubble].forEach { contentView.addSubview($0) }
+        [profileImage, chatName, bubble].forEach { contentView.addSubview($0) }
         
         contentView.backgroundColor = Style.Colors.viewBackground // UIColor(hex: "#F9F9F9")
         profileImage.backgroundColor = .orange
@@ -73,11 +67,11 @@ class ChatTableViewCell: UITableViewCell {
         profileImage.widthAnchor.constraint(equalToConstant: imageSize.width).isActive = true
         profileImage.heightAnchor.constraint(equalToConstant: imageSize.height).isActive = true
         
-        headerName.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16).isActive = true
-        headerName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 7).isActive = true
-        headerName.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -36).isActive = true
+        chatName.topAnchor.constraint(equalTo: contentView.layoutMarginsGuide.topAnchor, constant: 16).isActive = true
+        chatName.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 7).isActive = true
+        chatName.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -36).isActive = true
         
-        bubble.topAnchor.constraint(equalTo: headerName.bottomAnchor, constant: 4).isActive = true
+        bubble.topAnchor.constraint(equalTo: chatName.bottomAnchor, constant: 4).isActive = true
         bubble.leadingAnchor.constraint(equalTo: profileImage.trailingAnchor, constant: 7).isActive = true
         bubble.trailingAnchor.constraint(equalTo: contentView.layoutMarginsGuide.trailingAnchor, constant: -36).isActive = true
         bubble.bottomAnchor.constraint(equalTo: contentView.layoutMarginsGuide.bottomAnchor, constant: -8).isActive = true
@@ -93,11 +87,9 @@ class ChatTableViewCell: UITableViewCell {
     }
     
     // MARK: - Public
-        func setCellData(message: Message) {
-//            header.text = message.username
-//            body.text = message.text
-            headerName.text = message.name
-            bubble.text = message.message
-            profileImage.image = message.avatarURL.toImage
-        }
+    func setCellData(message: Message) {
+        chatName.text = message.name
+        bubble.text = message.message
+        profileImage.image = message.avatarURL.toImage
+    }
 }

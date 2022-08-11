@@ -16,37 +16,14 @@ class LoginView: UIView {
         return backgroundImage
     }()
     
-    var emailField: UITextField = {
-        let emailField = UITextField()
-        emailField.layer.cornerRadius = 5
-        emailField.backgroundColor = .white.withAlphaComponent(0.5) //?
-        //        emailField.placeholder = "Email"
-        emailField.attributedPlaceholder = NSAttributedString(
-            string: "Email",
-            attributes: [NSAttributedString.Key.foregroundColor : Style.Colors.LoginPlaceholderColor  /*UIColor(hex: "#5F6063")*/])
-        emailField.textColor = Style.Colors.LoginFilledColor //UIColor(hex: "#1B1E1F")
-        emailField.font = emailField.font?.withSize(16)
-        emailField.translatesAutoresizingMaskIntoConstraints = false
-        emailField.layer.cornerRadius = 8
-        emailField.leftViewMode = .always
-        emailField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: emailField.frame.height))
+    lazy var emailField: UITextField = {
+        let emailField = commonTextField(placeHolder: "Email")
         return emailField
     }()
     
-    var passwordField: UITextField = {
-        let passwordField = UITextField()
-        passwordField.layer.cornerRadius = 5
-        passwordField.backgroundColor = .white.withAlphaComponent(0.5)
-        //        passwordField.placeholder = "Password"
-        passwordField.attributedPlaceholder = NSAttributedString(
-            string: "Password",
-            attributes: [NSAttributedString.Key.foregroundColor : Style.Colors.LoginPlaceholderColor /*UIColor(hex: "#5F6063")*/])
-        passwordField.textColor = Style.Colors.LoginFilledColor //UIColor(hex: "#1B1E1F")
-        passwordField.font = passwordField.font?.withSize(16)
-        passwordField.layer.cornerRadius = 8
-        passwordField.translatesAutoresizingMaskIntoConstraints = false
-        passwordField.leftViewMode = .always
-        passwordField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: passwordField.frame.height))
+    lazy var passwordField: UITextField = {
+        let passwordField = commonTextField(placeHolder: "Password")
+        passwordField.isSecureTextEntry = true
         return passwordField
     }()
     
@@ -56,8 +33,7 @@ class LoginView: UIView {
         button.backgroundColor = Style.Colors.buttonBackground //UIColor(hex: "#0E5C89")
         button.setTitle("LOGIN", for: .normal)
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.titleLabel?.font = .systemFont(ofSize: 16, weight: .semibold)
-//        button.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
+        button.titleLabel?.font = Style.Fonts.buttonText //.systemFont(ofSize: 16, weight: .semibold)
         return button
     }()
     
@@ -72,8 +48,7 @@ class LoginView: UIView {
     
     func setupView() {
         backgroundColor = Style.Colors.viewBackground
-        insertSubview(backgroundImage, at: 0)
-        [/*backgroundImage, */emailField, passwordField, loginButton].forEach { addSubview($0) }
+        [backgroundImage, emailField, passwordField, loginButton].forEach { addSubview($0) }
         
         backgroundImage.topAnchor.constraint(equalTo: topAnchor).isActive = true
         backgroundImage.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -85,17 +60,31 @@ class LoginView: UIView {
         emailField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
         emailField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         
-        
         passwordField.heightAnchor.constraint(equalToConstant: 55).isActive = true
         passwordField.topAnchor.constraint(equalTo: emailField.bottomAnchor,constant: 24).isActive = true
         passwordField.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
         passwordField.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
         
-        
         loginButton.heightAnchor.constraint(equalToConstant: 55).isActive = true
         loginButton.topAnchor.constraint(equalTo: passwordField.bottomAnchor, constant: 24).isActive = true
         loginButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 30).isActive = true
         loginButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -30).isActive = true
+    }
+    
+    func commonTextField(placeHolder: String) -> UITextField {
+        let commonField = UITextField()
+        commonField.layer.cornerRadius = 5
+        commonField.backgroundColor = Style.Colors.LoginBackground
+        commonField.attributedPlaceholder = NSAttributedString(
+            string: placeHolder,
+            attributes: [NSAttributedString.Key.foregroundColor : Style.Colors.LoginPlaceholderColor  /*UIColor(hex: "#5F6063")*/])
+        commonField.textColor = Style.Colors.LoginFilledColor //UIColor(hex: "#1B1E1F")
+        commonField.font = commonField.font?.withSize(16)
+        commonField.translatesAutoresizingMaskIntoConstraints = false
+        commonField.layer.cornerRadius = 8
+        commonField.leftViewMode = .always
+        commonField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 24, height: commonField.frame.height))
+        return commonField
     }
     
 }

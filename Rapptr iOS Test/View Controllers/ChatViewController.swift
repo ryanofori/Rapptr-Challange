@@ -46,7 +46,7 @@ class ChatViewController: UIViewController {
                     self.chatView.chatTableView.reloadData()
                 }
             case .failure(let error):
-                print(error, error.localizedDescription)
+                NSLog(error.localizedDescription)
             }
         })
     }

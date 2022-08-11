@@ -9,8 +9,7 @@ import Foundation
 import UIKit
 class ChatView: UIView {
     var chatTableView = UITableView()
-//    var chatViewModel = ChatViewModel()
-    var messages = [Message]()
+    var chatViewModel = ChatViewModel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,12 +46,12 @@ extension ChatView: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = chatTableView.dequeueReusableCell(withIdentifier: String(describing: ChatTableViewCell.self)) as? ChatTableViewCell else { return UITableViewCell() }
         cell.selectionStyle = .none
-        cell.setCellData(message: messages[indexPath.row])
+        cell.setCellData(message: chatViewModel.messages[indexPath.row])
         return cell
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return chatViewModel.messages.count
     }
 }
 
