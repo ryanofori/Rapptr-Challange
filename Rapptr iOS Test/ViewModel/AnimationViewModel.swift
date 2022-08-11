@@ -7,5 +7,5 @@
 
 import Foundation
 class AnimationViewModel {
-    var logoVisable = true
+    var islogoVisable = false
 }

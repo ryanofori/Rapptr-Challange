@@ -32,25 +32,70 @@ class AnimationViewController: UIViewController {
         view = animationView
         showTitle("Animation")
         changeStatusColor()
+        setUpLogo()
         animationView.fadeButton.addTarget(self, action: #selector(animatedLogo), for: .touchUpInside)
+        
+    }
+    
+    func setUpLogo() {
+        if animationViewModel.islogoVisable {
+            animationView.logoImage.alpha = 1
+        } else {
+            animationView.logoImage.alpha = 0
+        }
     }
     
     // MARK: - Actions
     @objc func animatedLogo() {
-        if animationViewModel.logoVisable {
+        if animationViewModel.islogoVisable {
             UIView.animate(withDuration: 1.5) {
                 self.animationView.logoImage.alpha = 0
             }
-            animationView.fadeButton.setTitle("Fade Out", for: .normal)
-            animationViewModel.logoVisable = false
+            animationView.fadeButton.setTitle("Fade In", for: .normal)
+            animationViewModel.islogoVisable = false
+            createLayer()
+            
         } else {
             UIView.animate(withDuration: 1.5) {
                 self.animationView.logoImage.alpha = 1
             }
-            animationView.fadeButton.setTitle("Fade In", for: .normal)
-            animationViewModel.logoVisable = true
+            animationView.fadeButton.setTitle("Fade Out", for: .normal)
+            animationViewModel.islogoVisable = true
+            createLayer()
+        }
+    }
+    
+    private func createLayer() {
+        
+        let layer = CAEmitterLayer()
+        layer.emitterPosition = CGPoint(x: view.center.x, y: -100)
+        layer.name = "confetii"
+        
+        let colors: [UIColor] = [
+            .systemRed, .systemBlue, .systemYellow, .systemGreen
+        ]
+        let cells: [CAEmitterCell] = colors.compactMap{
+            let cell = CAEmitterCell()
+            cell.scale = 0.02
+            cell.birthRate = 40
+            cell.lifetime = 10
+            cell.emissionRange = .pi * 2
+            cell.velocity = 150
+            cell.color = $0.cgColor
+            cell.contents = UIImage(named: "WhiteSquare")?.cgImage
+            return cell
         }
         
+        layer.emitterCells = cells
+        if animationViewModel.islogoVisable {
+            view.layer.addSublayer(layer)
+        } else {
+            view.layer.sublayers?.forEach {
+                if $0.name == "confetii" {
+                    layer.removeFromSuperlayer()
+                }
+            }
+        }
     }
     
 }
