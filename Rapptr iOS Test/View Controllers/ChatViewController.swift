@@ -40,13 +40,13 @@ class ChatViewController: UIViewController {
     
     func getChatData() {
         
-        client.fetchChatData(urlString: URLManager.messagesURL.rawValue, completion: { (result: Result<Messages, NetworkError>) in
+        client.fetchChatData(urlString: URLManager.messagesURL.rawValue, completion: {[weak self] (result: Result<Messages, NetworkError>) in
             switch result {
             case .success(let messages):
                 
-                self.chatViewModel.messages = messages.messages
+                self?.chatViewModel.messages = messages.messages
                 DispatchQueue.main.async {
-                    self.chatView.chatTableView.reloadData()
+                    self?.chatView.chatTableView.reloadData()
                 }
             case .failure(let error):
                 
