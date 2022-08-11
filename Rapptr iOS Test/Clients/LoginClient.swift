@@ -29,7 +29,7 @@ class LoginClient {
     func login(email: String, password: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
         guard let url = URL(string: URLManager.loginURL.rawValue)else { return }
         
-        let param = ["email": email, "password": password]
+        let param = ["email": "info@rapptrlabs.com", "password": "Test123a"]
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
         let postString = (param.compactMap{ "\($0)=\($1)"}).joined(separator: "&")
@@ -44,7 +44,7 @@ class LoginClient {
             }
             if let data = data {
                 do{
-                    self.loginViewModel.jsonResponse = try JSONDecoder().decode(JSONResponse.self, from: data)
+                    self.loginViewModel.loginResponse = try JSONDecoder().decode(LoginResponse.self, from: data)
                     let timeResponse : TimeInterval = NSDate.timeIntervalSinceReferenceDate - start
                     completion(.success(timeResponse.millisecond))
                 }

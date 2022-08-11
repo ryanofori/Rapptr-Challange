@@ -60,8 +60,10 @@ class LoginViewController: UIViewController {
         client.login(email: emailText, password: passwordText) { (result: (Result<Int, NetworkError>)) in
             switch result {
             case .success(let success):
+                self.loginViewModel = self.client.loginViewModel
                 self.alert.showAlert(mesageTitle: "Success", messageDesc: "\(success) mils", viewController: self){ _ in
-                    if self.loginViewModel?.jsonResponse?.code == "Success" {
+                    //
+                    if self.loginViewModel?.loginResponse?.code == "Success" {
                         self.naviagateToPrevious()
                     }
                 }

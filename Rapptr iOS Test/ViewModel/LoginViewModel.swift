@@ -7,5 +7,5 @@
 
 import Foundation
 class LoginViewModel {
-    var jsonResponse: JSONResponse?
+    var loginResponse: LoginResponse?
 }
