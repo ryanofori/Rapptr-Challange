@@ -39,11 +39,11 @@ class Rapptr_iOS_TestTests: XCTestCase {
     }
     
     func testChat() throws {
-        let result = JSONParser.parse("Chat", model: Message.self)
+        let result = JSONParser.parse("Chat", model: Messages.self)
         switch result {
         case .success(let model):
-            XCTAssert(model.name == "Error", "found: \(model.name)")
-            XCTAssert(model.message == "Invalid Parameters", "found: \(model.message)")
+            XCTAssert(model.messages[0].name == "Drew", "found: \(model.messages[0].name)")
+            XCTAssert(model.messages[0].message == "Team, can we give job applicants taking this test some examples of the types of apps they’d be working on if they joined our team?", "found: \(model.messages[0].message)")
         case .failure(let error):
             XCTFail("Error type: \(error)")
         }
