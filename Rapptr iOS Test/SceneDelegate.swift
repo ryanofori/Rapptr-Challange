@@ -12,11 +12,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
+    var mainCoordinator: MainCoordinator?
+    
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(frame: scene.coordinateSpace.bounds)
         window?.windowScene = scene
-        window?.makeKeyAndVisible()
+        
         let rootController = MenuViewController()
         let navigationController = UINavigationController(rootViewController: rootController)
         navigationController.navigationBar.backgroundColor = Style.Colors.headerBackground
@@ -25,6 +27,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white, NSAttributedString.Key.font: Style.Fonts.headerText]
         navigationController.navigationBar.inputViewController?.changeStatusColor()
         window?.rootViewController = navigationController
+        mainCoordinator = MainCoordinator(navigationController: window?.rootViewController as! UINavigationController)
+        mainCoordinator?.start()
+        window?.makeKeyAndVisible()
     }
 }
 

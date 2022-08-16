@@ -5,7 +5,9 @@
 //  Copyright © 2020 Rapptr Labs. All rights reserved.
 
 import UIKit
-
+public protocol SecondViewControllerDelegate: AnyObject {
+    func navigateToFirstPage()
+}
 class ChatViewController: UIViewController {
     
     /**
@@ -26,6 +28,8 @@ class ChatViewController: UIViewController {
     
     var chatView = ChatView()
     var chatViewModel = ChatViewModel()
+    
+    public weak var delegate: SecondViewControllerDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {

@@ -6,6 +6,12 @@
 
 import UIKit
 
+public protocol MenuViewControllerDelegate: AnyObject {
+    func navigateToChatPage()
+    func navigateToLoginPage()
+    func navigateToAnimationPage()
+}
+
 class MenuViewController: UIViewController {
     
     /**
@@ -29,6 +35,8 @@ class MenuViewController: UIViewController {
      */
     
     var menuView = MenuView()
+    
+    public weak var delegate: MenuViewControllerDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -54,17 +62,20 @@ class MenuViewController: UIViewController {
     
     // MARK: - Actions
     @objc private func didPressChatButton() {
-        let loginViewController = ChatViewController()
-        navigationController?.pushViewController(loginViewController, animated: true)
+//        let loginViewController = ChatViewController()
+//        navigationController?.pushViewController(loginViewController, animated: true)
+        self.delegate?.navigateToChatPage()
     }
     
     @objc private func didPressLoginButton() {
-        let loginViewController = LoginViewController()
-        navigationController?.pushViewController(loginViewController, animated: true)
+//        let loginViewController = LoginViewController()
+//        navigationController?.pushViewController(loginViewController, animated: true)
+        self.delegate?.navigateToLoginPage()
     }
     
     @objc private func didPressAnimationButton() {
-        let animationViewController = AnimationViewController()
-        navigationController?.pushViewController(animationViewController, animated: true)
+//        let animationViewController = AnimationViewController()
+//        navigationController?.pushViewController(animationViewController, animated: true)
+        self.delegate?.navigateToAnimationPage()
     }
 }

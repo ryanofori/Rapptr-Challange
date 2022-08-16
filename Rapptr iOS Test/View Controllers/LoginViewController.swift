@@ -34,6 +34,8 @@ class LoginViewController: UIViewController {
     var loginView = LoginView()
     var loginViewModel: LoginViewModel?
     
+    public weak var delegate: SecondViewControllerDelegate?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +49,8 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @objc func naviagateToPrevious() {
-        navigationController?.popViewController(animated: true)
+        delegate?.navigateToFirstPage()
+//        navigationController?.popViewController(animated: true)
     }
     
     @objc func didPressLoginButton() {

@@ -26,6 +26,8 @@ class AnimationViewController: UIViewController {
     var animationView = AnimationView()
     var animationViewModel = AnimationViewModel()
     
+    public weak var delegate: SecondViewControllerDelegate?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +38,12 @@ class AnimationViewController: UIViewController {
         setUpLogo()
         
         animationView.fadeButton.addTarget(self, action: #selector(animatedLogo), for: .touchUpInside)
-        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        animationViewModel.islogoVisable = false
+        confetiiLayer()
     }
     
     func setUpLogo() {
