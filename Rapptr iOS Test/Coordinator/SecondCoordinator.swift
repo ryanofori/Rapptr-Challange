@@ -47,7 +47,7 @@ class SecondCoordinator: Coordinator {
 
 extension SecondCoordinator: SecondViewControllerDelegate {
     func navigateToFirstPage() {
-        delegate?.navigateBackToFirstPage(newOrderCoordinator: self)
+        self.delegate?.navigateBackToFirstPage(newOrderCoordinator: self)
     }
     
 }

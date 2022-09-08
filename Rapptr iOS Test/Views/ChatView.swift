@@ -35,7 +35,7 @@ class ChatView: UIView {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.register(ChatTableViewCell.self, forCellReuseIdentifier: String(describing: ChatTableViewCell.self))
-        tableView.backgroundColor = Style.Colors.viewBackground //UIColor(hex: "#F9F9F9")
+        tableView.backgroundColor = Style.Colors.viewBackground
         tableView.separatorColor = .clear
         [tableView].forEach { addSubview($0) }
     }

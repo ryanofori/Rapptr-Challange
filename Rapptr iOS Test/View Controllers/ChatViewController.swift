@@ -5,9 +5,7 @@
 //  Copyright © 2020 Rapptr Labs. All rights reserved.
 
 import UIKit
-public protocol SecondViewControllerDelegate: AnyObject {
-    func navigateToFirstPage()
-}
+
 class ChatViewController: UIViewController {
     
     /**
