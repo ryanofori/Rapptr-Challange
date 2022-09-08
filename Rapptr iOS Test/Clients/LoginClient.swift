@@ -30,7 +30,7 @@ class LoginClient {
     func login(email: String, password: String, completion: @escaping (Result<Int, NetworkError>) -> Void) {
         guard let url = URL(string: URLManager.loginURL.rawValue)else { return }
         
-        var param = ["email": email, "password": password]
+        let param = ["email": email, "password": password]
         
         var request = URLRequest(url: url)
         request.httpMethod = HTTPMethod.post.rawValue
