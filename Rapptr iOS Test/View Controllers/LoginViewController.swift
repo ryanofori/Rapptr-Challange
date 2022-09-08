@@ -45,8 +45,6 @@ class LoginViewController: UIViewController {
         view = loginView
         showTitle("Login")
         changeStatusColor()
-//        let backButton = UIBarButtonItem(image: UIImage(systemName: "chevron.backward"), style: .plain, target: self, action: #selector(naviagateToPrevious))
-//        self.navigationItem.leftBarButtonItem = backButton
         loginView.loginButton.addTarget(self, action: #selector(didPressLoginButton), for: .touchUpInside)
         
     }
@@ -54,8 +52,6 @@ class LoginViewController: UIViewController {
     // MARK: - Actions
     
     @objc func naviagateToPrevious() {
-        print("I wanna go back")
-//        delegate?.navigateToFirstPage()
         DispatchQueue.main.async {
             self.navigationController?.popViewController(animated: true)
         }
@@ -69,17 +65,8 @@ class LoginViewController: UIViewController {
         
         client.login(email: emailText, password: passwordText) { (result: (Result<Int, NetworkError>)) in
             switch result {
-            case .success(let success):
+            case .success(_):
                 self.naviagateToPrevious()
-//                self.loginViewModel = self.client.loginViewModel
-//                print(self.loginViewModel?.loginResponse?.code)
-//                print(self.loginViewModel?.loginResponse?.message)
-//                self.alert.showAlert(mesageTitle: "Success", messageDesc: "\(success) mils", viewController: self){ _ in
-//                    if self.loginViewModel?.loginResponse?.code == "Success" {
-////                        print(loginViewModel?.loginResponse?.code)
-//                        self.naviagateToPrevious()
-//                    }
-//                }
             case .failure(let error):
                 
                 self.alert.showAlert(mesageTitle: "Error", messageDesc: "\(error): \(error.localizedDescription)", viewController: self){ _ in
